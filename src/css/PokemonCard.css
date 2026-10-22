@@ -2,7 +2,6 @@
   position: relative;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-top: 4px solid var(--accent);
   border-radius: var(--radius);
   transition: transform 0.15s, border-color 0.15s;
 }

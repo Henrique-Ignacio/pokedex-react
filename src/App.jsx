@@ -6,6 +6,7 @@ import Filters from './components/Filters'
 import PokemonList from './components/PokemonList'
 import PokemonDetails from './components/PokemonDetails'
 import TrainerList from './components/TrainerList'
+import TrainerDetails from './components/TrainerDetails'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import { matchesQuery, sortPokemon } from './utils/pokemon'
 import './css/App.css'
@@ -24,8 +25,9 @@ export default function App() {
   const [sortKey, setSortKey] = useState('id')
   const [favoritesOnly, setFavoritesOnly] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
+  const [selectedTrainerId, setSelectedTrainerId] = useState(null)
   const [favorites, setFavorites] = useLocalStorage('pokedex:favorites', [])
-  const [theme, setTheme] = useLocalStorage('pokedex:theme', 'dark')
+  const [theme, setTheme] = useLocalStorage('pokedex:theme', 'light')
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -64,6 +66,10 @@ export default function App() {
     ? trainers.filter((t) => t.pokemonIds.includes(selectedPokemon.id))
     : []
 
+  const selectedTrainer =
+    selectedTrainerId !== null ? trainers.find((t) => t.id === selectedTrainerId) : null
+  const teamOf = (trainer) => trainer.pokemonIds.map((id) => pokemonById.get(id)).filter(Boolean)
+
   return (
     <div className="app">
       <Header
@@ -100,9 +106,24 @@ export default function App() {
             />
           </>
         ) : (
-          <TrainerList trainers={trainers} pokemonById={pokemonById} onSelectPokemon={setSelectedId} />
+          <TrainerList
+            trainers={trainers}
+            pokemonById={pokemonById}
+            onSelectTrainer={setSelectedTrainerId}
+            onSelectPokemon={setSelectedId}
+          />
         )}
       </main>
+
+      {selectedTrainer && (
+        <TrainerDetails
+          trainer={selectedTrainer}
+          team={teamOf(selectedTrainer)}
+          covered={selectedPokemon !== null}
+          onClose={() => setSelectedTrainerId(null)}
+          onSelectPokemon={setSelectedId}
+        />
+      )}
 
       {selectedPokemon && (
         <PokemonDetails

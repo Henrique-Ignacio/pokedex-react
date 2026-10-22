@@ -1,23 +1,39 @@
 .trainer-card {
+  position: relative;
   display: grid;
   gap: 0.7rem;
   align-content: start;
   padding: 1.1rem;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-left: 5px solid var(--brand);
   border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
 }
+.trainer-card:hover { transform: translateY(-3px); border-color: var(--brand); }
 .trainer-card h3 { font-size: 1.5rem; font-weight: 800; }
-.trainer-card__badges { display: flex; align-items: center; gap: 0.6rem; margin: 0.3rem 0 0; color: var(--muted); font-size: 0.9rem; }
 
-.pips { display: inline-flex; gap: 3px; }
-.pips i { width: 11px; height: 11px; border-radius: 50%; background: var(--panel-2); border: 1px solid var(--border); }
-.pips i.on { background: #f7b500; border-color: #f7b500; }
+.trainer-card__open {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0;
+  background: none;
+  border: none;
+  text-align: left;
+  color: inherit;
+}
+/* Estica a área clicável do botão para o card inteiro */
+.trainer-card__open::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.trainer-card:hover h3 { color: var(--brand); }
+.trainer-card__sprite { width: 72px; height: 72px; flex: none; border-radius: 12px; background: var(--panel-2); }
 
 .trainer-card__label { margin: 0; color: var(--muted); font-size: 0.85rem; }
 .trainer-card__team { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .trainer-card__team button {
+  /* Fica acima da área clicável do card: clicar no nome abre o Pokémon */
+  position: relative;
+  z-index: 1;
   background: var(--panel-2);
   border: 1px solid var(--border);
   border-radius: 999px;

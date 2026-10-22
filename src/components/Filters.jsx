@@ -35,7 +35,7 @@ export default function Filters({
               style={
                 active
                   ? { background: colorOf(t.name), color: textOn(t.name), borderColor: colorOf(t.name) }
-                  : { '--dot': colorOf(t.name) }
+                  : { '--type-color': colorOf(t.name) }
               }
               aria-pressed={active}
               onClick={() => onToggleType(t.id)}

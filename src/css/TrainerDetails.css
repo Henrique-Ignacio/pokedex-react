@@ -1,0 +1,28 @@
+.trainer-details__heading { font-size: 1.1rem; margin-bottom: 0.6rem; }
+.trainer-details__ace { margin: 0.6rem 0 0; color: var(--muted); }
+.trainer-details__ace strong { color: var(--text); }
+
+.trainer-team {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.6rem;
+}
+.trainer-team__member {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  padding: 0.7rem 0.5rem;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: inherit;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.trainer-team__member:hover { transform: translateY(-2px); border-color: var(--accent); }
+.trainer-team__art { width: 90px; height: 90px; }
+.trainer-team__types { display: flex; gap: 0.25rem; flex-wrap: wrap; justify-content: center; }
+.trainer-team__total { color: var(--muted); font-size: 0.8rem; }
+
+.trainer-details__types { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.trainer-details__types li { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--muted); }

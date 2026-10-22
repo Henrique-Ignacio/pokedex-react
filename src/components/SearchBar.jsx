@@ -7,7 +7,7 @@ export default function SearchBar({ value, onChange }) {
       <input
         type="search"
         value={value}
-        placeholder="Pesquisar Pokémon... (nome ou ID)"
+        placeholder="Digite o nome do Pokémon"
         onChange={(e) => onChange(e.target.value)}
       />
     </label>

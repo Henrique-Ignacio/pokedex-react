@@ -12,13 +12,7 @@
   font-size: 0.9rem;
   font-weight: 500;
 }
-.chip--type:not(.chip--active)::before {
-  content: '';
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: var(--dot);
-}
+.chip--type:not(.chip--active) { border-color: var(--type-color); }
 .chip--active { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); font-weight: 600; }
 
 .filters__tools { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }

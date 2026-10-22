@@ -19,7 +19,6 @@
   padding: 1.6rem;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-top: 6px solid var(--accent);
   border-radius: 18px;
   animation: pop 0.18s ease-out;
 }

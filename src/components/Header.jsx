@@ -4,10 +4,15 @@ export default function Header({ view, onChangeView, theme, onToggleTheme, total
   return (
     <header className="app-header">
       <div className="app-header__brand">
-        <span className="app-header__ball" aria-hidden="true" />
+        <img
+          className="app-header__logo"
+          src={`${import.meta.env.BASE_URL}pokeball.png`}
+          alt=""
+          width="46"
+          height="46"
+        />
         <div>
           <h1>Pokédex</h1>
-          <p>{view === 'pokedex' ? `${shown} de ${total} Pokémon` : 'Treinadores de Kanto'}</p>
         </div>
       </div>
 

@@ -11,26 +11,7 @@
 .app-header p { margin: 0.15rem 0 0; color: var(--muted); font-size: 0.9rem; }
 
 /* Pokébola desenhada só com CSS */
-.app-header__ball {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 3px solid var(--text);
-  background: linear-gradient(to bottom, var(--brand) 0 46%, var(--text) 46% 54%, var(--panel) 54% 100%);
-  position: relative;
-  flex: none;
-}
-.app-header__ball::after {
-  content: '';
-  position: absolute;
-  inset: 50% auto auto 50%;
-  width: 14px;
-  height: 14px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: var(--panel);
-  border: 3px solid var(--text);
-}
+.app-header__logo { display: block; width: 46px; height: 46px; flex: none; }
 
 .app-header__nav {
   display: flex;
