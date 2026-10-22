@@ -20,7 +20,7 @@ const pokemonById = new Map(allPokemon.map((p) => [p.id, p]))
 export default function App() {
   const [view, setView] = useState('pokedex')
   const [query, setQuery] = useState('')
-  const [selectedType, setSelectedType] = useState(null)
+  const [selectedTypes, setSelectedTypes] = useState([])
   const [sortKey, setSortKey] = useState('id')
   const [favoritesOnly, setFavoritesOnly] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
@@ -36,18 +36,21 @@ export default function App() {
     const filtered = allPokemon.filter(
       (p) =>
         matchesQuery(p, query) &&
-        (selectedType === null || p.types.some((t) => t.id === selectedType)) &&
+        (selectedTypes.length === 0 || p.types.some((t) => selectedTypes.includes(t.id))) &&
         (!favoritesOnly || favorites.includes(p.id)),
     )
     return sortPokemon(filtered, sortKey)
-  }, [query, selectedType, sortKey, favoritesOnly, favorites])
+  }, [query, selectedTypes, sortKey, favoritesOnly, favorites])
 
   const toggleFavorite = (id) =>
     setFavorites((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]))
 
+  const toggleType = (id) =>
+    setSelectedTypes((prev) => (prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]))
+
   const clearFilters = () => {
     setQuery('')
-    setSelectedType(null)
+    setSelectedTypes([])
     setFavoritesOnly(false)
   }
 
@@ -78,8 +81,9 @@ export default function App() {
             <SearchBar value={query} onChange={setQuery} />
             <Filters
               types={filterTypes}
-              selectedType={selectedType}
-              onSelectType={setSelectedType}
+              selectedTypes={selectedTypes}
+              onToggleType={toggleType}
+              onClearTypes={() => setSelectedTypes([])}
               sortKey={sortKey}
               onSortChange={setSortKey}
               favoritesOnly={favoritesOnly}

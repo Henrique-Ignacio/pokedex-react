@@ -4,8 +4,9 @@ import '../css/Filters.css'
 
 export default function Filters({
   types,
-  selectedType,
-  onSelectType,
+  selectedTypes,
+  onToggleType,
+  onClearTypes,
   sortKey,
   onSortChange,
   favoritesOnly,
@@ -18,14 +19,14 @@ export default function Filters({
       <div className="filters__types" role="group" aria-label="Filtrar por tipo">
         <button
           type="button"
-          className={`chip ${selectedType === null ? 'chip--active' : ''}`}
-          aria-pressed={selectedType === null}
-          onClick={() => onSelectType(null)}
+          className={`chip ${selectedTypes.length === 0 ? 'chip--active' : ''}`}
+          aria-pressed={selectedTypes.length === 0}
+          onClick={onClearTypes}
         >
           Todos
         </button>
         {types.map((t) => {
-          const active = selectedType === t.id
+          const active = selectedTypes.includes(t.id)
           return (
             <button
               type="button"
@@ -37,7 +38,7 @@ export default function Filters({
                   : { '--dot': colorOf(t.name) }
               }
               aria-pressed={active}
-              onClick={() => onSelectType(active ? null : t.id)}
+              onClick={() => onToggleType(t.id)}
             >
               {t.name}
             </button>

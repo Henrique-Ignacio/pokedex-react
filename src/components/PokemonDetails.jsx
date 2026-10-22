@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import PokemonImage from './PokemonImage'
 import TypeBadge from './TypeBadge'
 import StatBar from './StatBar'
+import TcgCards from './TcgCards'
 import { STATS, formatId, totalStats, typesOf } from '../utils/pokemon'
 import { colorOf } from '../utils/typeColors'
 import '../css/PokemonDetails.css'
@@ -78,6 +79,8 @@ export default function PokemonDetails({ pokemon, trainers, isFavorite, onClose,
             </ul>
           )}
         </section>
+
+        <TcgCards key={pokemon.id} dexId={pokemon.id} />
       </div>
     </div>
   )
