@@ -3,7 +3,7 @@
 Atividade 03 — Desenvolvimento e Integração de Aplicações Web (PUC Minas).
 Pokédex interativa feita com **React + Vite** para explorar os 151 Pokémon de Kanto e seus treinadores.
 
-**Autores:** Henrique Ignacio Ferreira Souza e _[nome do(a) parceiro(a) da dupla]_
+**Autores:** Henrique Ignacio Ferreira Souza e João Pedro Oliveira Monteiro Moura
 
 ## Funcionalidades
 
