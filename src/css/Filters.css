@@ -1,0 +1,32 @@
+.filters { display: grid; gap: 0.9rem; }
+.filters__types { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.chip--type:not(.chip--active)::before {
+  content: '';
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--dot);
+}
+.chip--active { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); font-weight: 600; }
+
+.filters__tools { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.select { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.9rem; }
+.select select {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  color: var(--text);
+}

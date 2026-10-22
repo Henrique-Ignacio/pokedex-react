@@ -1,0 +1,60 @@
+:root {
+  --bg: #0e1320;
+  --panel: #161d2f;
+  --panel-2: #1d2640;
+  --border: #2a3554;
+  --text: #e8ecf6;
+  --muted: #92a0c0;
+  --brand: #e63946;
+  --brand-ink: #ffffff;
+  --radius: 14px;
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #eef1f7;
+  --panel: #ffffff;
+  --panel-2: #f3f5fb;
+  --border: #d5dcec;
+  --text: #121829;
+  --muted: #55627f;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-display); margin: 0; line-height: 1.1; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+ul { list-style: none; margin: 0; padding: 0; }
+
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+.muted { color: var(--muted); }
+
+/* Botão padrão */
+.btn {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn:hover { border-color: var(--brand); }
+.btn--active { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

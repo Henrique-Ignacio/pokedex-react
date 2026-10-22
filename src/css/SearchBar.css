@@ -1,0 +1,14 @@
+.search-bar { display: block; }
+.search-bar__label {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.search-bar input {
+  width: 100%;
+  padding: 0.95rem 1.2rem;
+  font-size: 1.05rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.search-bar input::placeholder { color: var(--muted); }
+.search-bar input:focus-visible { border-color: var(--brand); }
