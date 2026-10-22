@@ -14,12 +14,12 @@
 }
 
 :root[data-theme='dark'] {
-  --bg: #0e1320;
-  --panel: #161d2f;
-  --panel-2: #1d2640;
-  --border: #2a3554;
-  --text: #e8ecf6;
-  --muted: #92a0c0;
+  --bg: #242424;
+  --panel: #2e2e2e;
+  --panel-2: #383838;
+  --border: #444444;
+  --text: #f0f0f0;
+  --muted: #ababab;
   color-scheme: dark;
 }
 
