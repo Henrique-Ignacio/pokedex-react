@@ -3,11 +3,12 @@ import PokemonImage from './PokemonImage'
 import TypeBadge from './TypeBadge'
 import StatBar from './StatBar'
 import TcgCards from './TcgCards'
+import TypeMatchups from './TypeMatchups'
 import { STATS, formatId, totalStats, typesOf } from '../utils/pokemon'
 import { colorOf } from '../utils/typeColors'
 import '../css/PokemonDetails.css'
 
-export default function PokemonDetails({ pokemon, trainers, isFavorite, onClose, onToggleFavorite }) {
+export default function PokemonDetails({ pokemon, trainers, isFavorite, onClose, onToggleFavorite, onCompare }) {
   // Fecha com a tecla Esc e trava o scroll do fundo enquanto o modal está aberto
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && onClose()
@@ -47,14 +48,19 @@ export default function PokemonDetails({ pokemon, trainers, isFavorite, onClose,
                 <TypeBadge key={t.id} name={t.name} />
               ))}
             </div>
-            <button
-              type="button"
-              className={`btn ${isFavorite ? 'btn--active' : ''}`}
-              aria-pressed={isFavorite}
-              onClick={() => onToggleFavorite(pokemon.id)}
-            >
-              {isFavorite ? '★ Favorito' : '☆ Favoritar'}
-            </button>
+            <div className="modal__actions">
+              <button
+                type="button"
+                className={`btn ${isFavorite ? 'btn--active' : ''}`}
+                aria-pressed={isFavorite}
+                onClick={() => onToggleFavorite(pokemon.id)}
+              >
+                {isFavorite ? '★ Favorito' : '☆ Favoritar'}
+              </button>
+              <button type="button" className="btn" onClick={() => onCompare(pokemon.id)}>
+                ⇄ Comparar
+              </button>
+            </div>
           </div>
         </header>
 
@@ -66,6 +72,8 @@ export default function PokemonDetails({ pokemon, trainers, isFavorite, onClose,
             Total: <strong>{totalStats(pokemon)}</strong>
           </p>
         </section>
+
+        <TypeMatchups types={types} />
 
         <section className="modal__trainers">
           <h3>Treinadores</h3>

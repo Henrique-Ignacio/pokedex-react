@@ -7,6 +7,7 @@ import PokemonList from './components/PokemonList'
 import PokemonDetails from './components/PokemonDetails'
 import TrainerList from './components/TrainerList'
 import TrainerDetails from './components/TrainerDetails'
+import CompareModal from './components/CompareModal'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import { matchesQuery, sortPokemon } from './utils/pokemon'
 import './css/App.css'
@@ -26,6 +27,7 @@ export default function App() {
   const [favoritesOnly, setFavoritesOnly] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
   const [selectedTrainerId, setSelectedTrainerId] = useState(null)
+  const [compareId, setCompareId] = useState(null)
   const [favorites, setFavorites] = useLocalStorage('pokedex:favorites', [])
   const [theme, setTheme] = useLocalStorage('pokedex:theme', 'light')
 
@@ -68,6 +70,13 @@ export default function App() {
 
   const selectedTrainer =
     selectedTrainerId !== null ? trainers.find((t) => t.id === selectedTrainerId) : null
+  // A comparação substitui os detalhes do Pokémon (não ficam dois modais empilhados)
+  const openCompare = (id) => {
+    setSelectedId(null)
+    setCompareId(id)
+  }
+  const compareBase = compareId !== null ? pokemonById.get(compareId) : null
+
   const teamOf = (trainer) => trainer.pokemonIds.map((id) => pokemonById.get(id)).filter(Boolean)
 
   return (
@@ -119,7 +128,7 @@ export default function App() {
         <TrainerDetails
           trainer={selectedTrainer}
           team={teamOf(selectedTrainer)}
-          covered={selectedPokemon !== null}
+          covered={selectedPokemon !== null || compareBase !== null}
           onClose={() => setSelectedTrainerId(null)}
           onSelectPokemon={setSelectedId}
         />
@@ -132,7 +141,12 @@ export default function App() {
           isFavorite={favorites.includes(selectedPokemon.id)}
           onClose={() => setSelectedId(null)}
           onToggleFavorite={toggleFavorite}
+          onCompare={openCompare}
         />
+      )}
+
+      {compareBase && (
+        <CompareModal base={compareBase} pokemonList={allPokemon} onClose={() => setCompareId(null)} />
       )}
     </div>
   )

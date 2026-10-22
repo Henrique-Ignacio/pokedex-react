@@ -17,13 +17,14 @@ export const TYPE_COLORS = {
   Dragon: '#6F35FC',
   Dark: '#705746',
   Steel: '#B7B7CE',
+  Fairy: '#D685AD',
   Typeless: '#888888',
 }
 
 // Tipos com fundo claro usam texto escuro; os demais usam texto branco (contraste)
 const DARK_TEXT_TYPES = new Set([
   'Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Ground',
-  'Flying', 'Psychic', 'Bug', 'Rock', 'Steel',
+  'Flying', 'Psychic', 'Bug', 'Rock', 'Steel', 'Fairy',
 ])
 
 export const colorOf = (typeName) => TYPE_COLORS[typeName] ?? TYPE_COLORS.Typeless

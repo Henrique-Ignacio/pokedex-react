@@ -1,0 +1,7 @@
+.matchups { display: grid; gap: 0.7rem; }
+.matchups h3 { font-size: 1.1rem; }
+.matchups__row h4 { margin: 0 0 0.35rem; font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+.matchups__row p { margin: 0; }
+.matchups__row ul { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.matchups__row li { display: inline-flex; align-items: center; gap: 0.25rem; }
+.matchups__mult { font-size: 0.8rem; font-weight: 600; font-variant-numeric: tabular-nums; }
