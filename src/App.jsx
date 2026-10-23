@@ -10,6 +10,7 @@ import TrainerDetails from './components/TrainerDetails'
 import CompareModal from './components/CompareModal'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import { matchesQuery, sortPokemon } from './utils/pokemon'
+import { trainerHasPokemon } from './utils/trainers'
 import './css/App.css'
 
 const { pokemon: allPokemon, trainers, types } = data
@@ -65,7 +66,7 @@ export default function App() {
 
   const selectedPokemon = selectedId !== null ? pokemonById.get(selectedId) : null
   const trainersOfSelected = selectedPokemon
-    ? trainers.filter((t) => t.pokemonIds.includes(selectedPokemon.id))
+    ? trainers.filter((t) => trainerHasPokemon(t, selectedPokemon.id))
     : []
 
   const selectedTrainer =
@@ -76,8 +77,6 @@ export default function App() {
     setCompareId(id)
   }
   const compareBase = compareId !== null ? pokemonById.get(compareId) : null
-
-  const teamOf = (trainer) => trainer.pokemonIds.map((id) => pokemonById.get(id)).filter(Boolean)
 
   return (
     <div className="app">
@@ -115,19 +114,15 @@ export default function App() {
             />
           </>
         ) : (
-          <TrainerList
-            trainers={trainers}
-            pokemonById={pokemonById}
-            onSelectTrainer={setSelectedTrainerId}
-            onSelectPokemon={setSelectedId}
-          />
+          <TrainerList trainers={trainers} onSelectTrainer={setSelectedTrainerId} />
         )}
       </main>
 
       {selectedTrainer && (
         <TrainerDetails
+          key={selectedTrainer.id}
           trainer={selectedTrainer}
-          team={teamOf(selectedTrainer)}
+          pokemonById={pokemonById}
           covered={selectedPokemon !== null || compareBase !== null}
           onClose={() => setSelectedTrainerId(null)}
           onSelectPokemon={setSelectedId}

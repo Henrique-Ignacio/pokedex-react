@@ -9,6 +9,15 @@ export const trainerSpriteId = (name) => SPRITE_OVERRIDES[name] ?? name.toLowerC
 export const trainerSpriteUrl = (name) =>
   `https://play.pokemonshowdown.com/sprites/trainers/${trainerSpriteId(name)}.png`
 
+// Cada treinador tem uma lista `teams` ({ label, pokemonIds }); o primeiro time é o padrão.
+// Converte os IDs de um time nos Pokémon completos (ignorando IDs que não existem nos dados).
+export const teamPokemon = (team, pokemonById) =>
+  team.pokemonIds.map((id) => pokemonById.get(id)).filter(Boolean)
+
+// O treinador tem o Pokémon em qualquer um dos seus times?
+export const trainerHasPokemon = (trainer, pokemonId) =>
+  trainer.teams.some((team) => team.pokemonIds.includes(pokemonId))
+
 // Média de cada atributo do time (arredondada)
 export const teamAverages = (team) =>
   STATS.map((s) => ({

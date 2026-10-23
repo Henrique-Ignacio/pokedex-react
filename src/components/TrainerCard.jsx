@@ -2,7 +2,9 @@ import TrainerImage from './TrainerImage'
 import Badges from './Badges'
 import '../css/TrainerCard.css'
 
-export default function TrainerCard({ trainer, team, onSelectTrainer, onSelectPokemon }) {
+export default function TrainerCard({ trainer, onSelectTrainer }) {
+  const teamCount = trainer.teams.length
+
   return (
     <article className="trainer-card">
       <button
@@ -18,16 +20,9 @@ export default function TrainerCard({ trainer, team, onSelectTrainer, onSelectPo
         </span>
       </button>
 
-      <p className="trainer-card__label">Pokémon ({team.length})</p>
-      <ul className="trainer-card__team">
-        {team.map((p) => (
-          <li key={p.id}>
-            <button type="button" onClick={() => onSelectPokemon(p.id)}>
-              {p.name}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <p className="trainer-card__label">
+        {teamCount} {teamCount === 1 ? 'time' : 'times'}
+      </p>
     </article>
   )
 }

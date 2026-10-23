@@ -37,6 +37,20 @@ Para gerar a versão de produção: `npm run build` (e `npm run preview` para te
 
 Os dados principais ficam em `src/data/pokedex-data.json` (Pokémon, tipos e treinadores) e são importados diretamente pelo `App.jsx`. Não há banco de dados.
 
+Cada treinador tem uma lista `teams` com uma ou mais versões do time. O primeiro time é o padrão, mostrado no card. Quando há mais de um, os detalhes do treinador mostram uma caixa para escolher a versão (o texto da opção é o `label`):
+
+```json
+{
+  "id": 1,
+  "name": "Ash",
+  "badges": 9,
+  "teams": [
+    { "label": "Time principal", "pokemonIds": [25, 3, 6, 9, 131, 143] },
+    { "label": "Outra versão", "pokemonIds": [25, 1, 7] }
+  ]
+}
+```
+
 A tabela de efetividade de tipos fica em `src/data/typechart.json`. Ela foi gerada uma única vez a partir de `https://play.pokemonshowdown.com/data/typechart.js` (Pokémon Showdown) e guarda, para cada tipo defensor, o multiplicador de dano recebido de cada tipo de ataque. Como fica salva no projeto, as fraquezas funcionam sem internet.
 
 As cadeias de evolução ficam em `src/data/evolutions.json`, geradas uma única vez a partir da **PokéAPI** (`pokemon-species` e `evolution-chain`). Só entram os 151 de Kanto (por exemplo, o Pikachu aparece sem o Pichu, e o Eevee só com Vaporeon, Jolteon e Flareon), e a condição de cada evolução é a dos jogos Red/Blue.

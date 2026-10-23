@@ -1,17 +1,22 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import TrainerImage from './TrainerImage'
 import PokemonImage from './PokemonImage'
 import TypeBadge from './TypeBadge'
 import StatBar from './StatBar'
 import Badges from './Badges'
 import { formatId, totalStats, typesOf } from '../utils/pokemon'
-import { strongestOf, teamAverages, teamTypeCounts } from '../utils/trainers'
+import { strongestOf, teamAverages, teamPokemon, teamTypeCounts } from '../utils/trainers'
 import { colorOf } from '../utils/typeColors'
 import '../css/PokemonDetails.css'
+import '../css/Filters.css'
 import '../css/TrainerDetails.css'
 
 // `covered` = há outro modal (detalhes de um Pokémon) aberto por cima; aí o Esc é dele
-export default function TrainerDetails({ trainer, team, covered, onClose, onSelectPokemon }) {
+export default function TrainerDetails({ trainer, pokemonById, covered, onClose, onSelectPokemon }) {
+  // Índice do time escolhido na caixa de seleção (o primeiro é o padrão)
+  const [teamIndex, setTeamIndex] = useState(0)
+  const team = teamPokemon(trainer.teams[teamIndex], pokemonById)
+
   useEffect(() => {
     if (covered) return
     const onKey = (e) => e.key === 'Escape' && onClose()
@@ -60,7 +65,22 @@ export default function TrainerDetails({ trainer, team, covered, onClose, onSele
         </header>
 
         <section>
-          <h3 className="trainer-details__heading">Time ({team.length})</h3>
+          <div className="trainer-details__team-header">
+            <h3 className="trainer-details__heading">Time ({team.length})</h3>
+            {/* A caixa de seleção só aparece quando o treinador tem mais de uma versão */}
+            {trainer.teams.length > 1 && (
+              <label className="select">
+                <span>Versão</span>
+                <select value={teamIndex} onChange={(e) => setTeamIndex(Number(e.target.value))}>
+                  {trainer.teams.map((t, i) => (
+                    <option key={i} value={i}>
+                      {t.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
+          </div>
           {team.length === 0 ? (
             <p className="muted">Este treinador não tem Pokémon nos dados.</p>
           ) : (

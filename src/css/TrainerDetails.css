@@ -1,4 +1,13 @@
 .trainer-details__heading { font-size: 1.1rem; margin-bottom: 0.6rem; }
+.trainer-details__team-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+.trainer-details__team-header .trainer-details__heading { margin-bottom: 0; }
 .trainer-details__ace { margin: 0.6rem 0 0; color: var(--muted); }
 .trainer-details__ace strong { color: var(--text); }
 
