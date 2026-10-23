@@ -4,11 +4,21 @@ import TypeBadge from './TypeBadge'
 import StatBar from './StatBar'
 import TcgCards from './TcgCards'
 import TypeMatchups from './TypeMatchups'
+import EvolutionChain from './EvolutionChain'
 import { STATS, formatId, totalStats, typesOf } from '../utils/pokemon'
 import { colorOf } from '../utils/typeColors'
 import '../css/PokemonDetails.css'
 
-export default function PokemonDetails({ pokemon, trainers, isFavorite, onClose, onToggleFavorite, onCompare }) {
+export default function PokemonDetails({
+  pokemon,
+  pokemonById,
+  trainers,
+  isFavorite,
+  onClose,
+  onToggleFavorite,
+  onCompare,
+  onSelectPokemon,
+}) {
   // Fecha com a tecla Esc e trava o scroll do fundo enquanto o modal está aberto
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && onClose()
@@ -63,6 +73,8 @@ export default function PokemonDetails({ pokemon, trainers, isFavorite, onClose,
             </div>
           </div>
         </header>
+
+        <EvolutionChain pokemon={pokemon} pokemonById={pokemonById} onSelect={onSelectPokemon} />
 
         <section className="modal__stats" aria-label="Atributos">
           {STATS.map((s) => (

@@ -3041,7 +3041,12 @@
         "specialDefense": 100,
         "speed": 100
       },
-      "types": []
+      "types": [
+        {
+          "id": 11,
+          "name": "Psychic"
+        }
+      ]
     }
   ],
   "trainers": [

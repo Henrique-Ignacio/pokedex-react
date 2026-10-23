@@ -1,0 +1,36 @@
+.evo h3 { font-size: 1.1rem; margin-bottom: 0.6rem; }
+.evo p { margin: 0; }
+
+/* Cadeias longas (3 estágios) rolam na horizontal em telas pequenas */
+.evo__scroll { overflow-x: auto; padding-bottom: 0.3rem; }
+
+.evo__stage { display: flex; align-items: center; gap: 0.4rem; }
+.evo__branches { display: grid; gap: 0.5rem; }
+.evo__branch { display: flex; align-items: center; gap: 0.4rem; }
+
+.evo__mon {
+  display: grid;
+  justify-items: center;
+  gap: 0.1rem;
+  width: 96px;
+  flex: none;
+  padding: 0.4rem 0.3rem;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: inherit;
+}
+.evo__mon:not(:disabled):hover { background: var(--panel-2); border-color: var(--border); }
+.evo__mon.is-current { background: var(--panel-2); border-color: var(--accent); cursor: default; }
+.evo__art { width: 64px; height: 64px; }
+
+.evo__arrow {
+  display: grid;
+  justify-items: center;
+  min-width: 4.5rem;
+  color: var(--muted);
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.evo__arrow small { font-size: 0.72rem; line-height: 1.2; text-align: center; }

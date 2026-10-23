@@ -137,11 +137,13 @@ export default function App() {
       {selectedPokemon && (
         <PokemonDetails
           pokemon={selectedPokemon}
+          pokemonById={pokemonById}
           trainers={trainersOfSelected}
           isFavorite={favorites.includes(selectedPokemon.id)}
           onClose={() => setSelectedId(null)}
           onToggleFavorite={toggleFavorite}
           onCompare={openCompare}
+          onSelectPokemon={setSelectedId}
         />
       )}
 

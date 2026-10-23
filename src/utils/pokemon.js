@@ -40,6 +40,6 @@ export function sortPokemon(list, sortKey) {
   return copy.sort((a, b) => b.stats[sortKey] - a.stats[sortKey] || a.id - b.id)
 }
 
-// No arquivo de dados o Mew vem sem tipos; mostramos "Typeless" (tipo 0 do próprio JSON) nesse caso.
+// Se algum Pokémon vier sem tipos nos dados, mostramos "Typeless" (tipo 0 do próprio JSON).
 export const typesOf = (pokemon) =>
   pokemon.types.length > 0 ? pokemon.types : [{ id: 0, name: 'Typeless' }]

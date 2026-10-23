@@ -11,6 +11,7 @@ Pokédex interativa feita com **React + Vite** para explorar os 151 Pokémon de 
 - Pesquisa por **nome** ou **ID** (atualiza enquanto você digita)
 - Filtro por **um ou mais tipos** ao mesmo tempo (mostra os Pokémon que têm qualquer um dos tipos selecionados)
 - Detalhes do Pokémon em **modal** com:
+  - **cadeia de evolução** com a condição de cada etapa (nível, pedra ou troca); clique em um estágio para abrir os detalhes dele
   - barras de atributos e total
   - **fraquezas, resistências e imunidades** (×4, ×2, ×½, ×¼, ×0), calculadas a partir dos tipos
   - treinadores que o possuem
@@ -38,6 +39,8 @@ Os dados principais ficam em `src/data/pokedex-data.json` (Pokémon, tipos e tre
 
 A tabela de efetividade de tipos fica em `src/data/typechart.json`. Ela foi gerada uma única vez a partir de `https://play.pokemonshowdown.com/data/typechart.js` (Pokémon Showdown) e guarda, para cada tipo defensor, o multiplicador de dano recebido de cada tipo de ataque. Como fica salva no projeto, as fraquezas funcionam sem internet.
 
+As cadeias de evolução ficam em `src/data/evolutions.json`, geradas uma única vez a partir da **PokéAPI** (`pokemon-species` e `evolution-chain`). Só entram os 151 de Kanto (por exemplo, o Pikachu aparece sem o Pichu, e o Eevee só com Vaporeon, Jolteon e Flareon), e a condição de cada evolução é a dos jogos Red/Blue.
+
 ## Fontes externas
 
 Todas são públicas, sem chave de acesso, e o app continua funcionando se alguma delas estiver fora do ar.
@@ -62,13 +65,14 @@ public/
 src/
 ├── components/   Header, SearchBar, Filters, PokemonList, PokemonCard,
 │                 PokemonDetails, PokemonImage, StatBar, TypeBadge,
-│                 TypeMatchups, TcgCards, CompareModal,
+│                 TypeMatchups, EvolutionChain, TcgCards, CompareModal,
 │                 TrainerList, TrainerCard, TrainerDetails, TrainerImage, Badges
 ├── css/          um arquivo de estilo por componente + App.css
-├── data/         pokedex-data.json e typechart.json
+├── data/         pokedex-data.json, typechart.json e evolutions.json
 ├── hooks/        useLocalStorage (favoritos e tema) e useTcgCards (cartas da TCGdex)
 ├── utils/        pokemon.js (busca, ordenação, atributos), typeColors.js,
-│                 typeMatchups.js (fraquezas e resistências) e trainers.js (sprites e estatísticas do time)
+│                 typeMatchups.js (fraquezas e resistências), evolutions.js (cadeias de evolução)
+│                 e trainers.js (sprites e estatísticas do time)
 ├── App.jsx       estado global (busca, filtros, favoritos, modais) e composição
 ├── main.jsx
 └── index.css     variáveis de tema e estilos globais

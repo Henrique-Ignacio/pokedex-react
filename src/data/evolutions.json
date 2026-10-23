@@ -1,0 +1,960 @@
+[
+  {
+    "id": 1,
+    "evolvesTo": [
+      {
+        "id": 2,
+        "evolvesTo": [
+          {
+            "id": 3,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "level-up",
+              "level": 32
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "evolvesTo": [
+      {
+        "id": 5,
+        "evolvesTo": [
+          {
+            "id": 6,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "level-up",
+              "level": 36
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "evolvesTo": [
+      {
+        "id": 8,
+        "evolvesTo": [
+          {
+            "id": 9,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "level-up",
+              "level": 36
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "evolvesTo": [
+      {
+        "id": 11,
+        "evolvesTo": [
+          {
+            "id": 12,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "level-up",
+              "level": 10
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 7
+        }
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "evolvesTo": [
+      {
+        "id": 14,
+        "evolvesTo": [
+          {
+            "id": 15,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "level-up",
+              "level": 10
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 7
+        }
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "evolvesTo": [
+      {
+        "id": 17,
+        "evolvesTo": [
+          {
+            "id": 18,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "level-up",
+              "level": 36
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 18
+        }
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "evolvesTo": [
+      {
+        "id": 20,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 20
+        }
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "evolvesTo": [
+      {
+        "id": 22,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 20
+        }
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "evolvesTo": [
+      {
+        "id": 24,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 22
+        }
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "evolvesTo": [
+      {
+        "id": 26,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "thunder-stone"
+        }
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "evolvesTo": [
+      {
+        "id": 28,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 22
+        }
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "evolvesTo": [
+      {
+        "id": 30,
+        "evolvesTo": [
+          {
+            "id": 31,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "use-item",
+              "item": "moon-stone"
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "evolvesTo": [
+      {
+        "id": 33,
+        "evolvesTo": [
+          {
+            "id": 34,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "use-item",
+              "item": "moon-stone"
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "evolvesTo": [
+      {
+        "id": 36,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "moon-stone"
+        }
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "evolvesTo": [
+      {
+        "id": 38,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "fire-stone"
+        }
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "evolvesTo": [
+      {
+        "id": 40,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "moon-stone"
+        }
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "evolvesTo": [
+      {
+        "id": 42,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 22
+        }
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "evolvesTo": [
+      {
+        "id": 44,
+        "evolvesTo": [
+          {
+            "id": 45,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "use-item",
+              "item": "leaf-stone"
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 21
+        }
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "evolvesTo": [
+      {
+        "id": 47,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 24
+        }
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "evolvesTo": [
+      {
+        "id": 49,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 31
+        }
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "evolvesTo": [
+      {
+        "id": 51,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 26
+        }
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "evolvesTo": [
+      {
+        "id": 53,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 28
+        }
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "evolvesTo": [
+      {
+        "id": 55,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 33
+        }
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "evolvesTo": [
+      {
+        "id": 57,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 28
+        }
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "evolvesTo": [
+      {
+        "id": 59,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "fire-stone"
+        }
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "evolvesTo": [
+      {
+        "id": 61,
+        "evolvesTo": [
+          {
+            "id": 62,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "use-item",
+              "item": "water-stone"
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 25
+        }
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "evolvesTo": [
+      {
+        "id": 64,
+        "evolvesTo": [
+          {
+            "id": 65,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "trade"
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 16
+        }
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "evolvesTo": [
+      {
+        "id": 67,
+        "evolvesTo": [
+          {
+            "id": 68,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "trade"
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 28
+        }
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "evolvesTo": [
+      {
+        "id": 70,
+        "evolvesTo": [
+          {
+            "id": 71,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "use-item",
+              "item": "leaf-stone"
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 21
+        }
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "evolvesTo": [
+      {
+        "id": 73,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 30
+        }
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "evolvesTo": [
+      {
+        "id": 75,
+        "evolvesTo": [
+          {
+            "id": 76,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "trade"
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 25
+        }
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "evolvesTo": [
+      {
+        "id": 78,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 40
+        }
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "evolvesTo": [
+      {
+        "id": 80,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 37
+        }
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "evolvesTo": [
+      {
+        "id": 82,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 30
+        }
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "evolvesTo": []
+  },
+  {
+    "id": 84,
+    "evolvesTo": [
+      {
+        "id": 85,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 31
+        }
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "evolvesTo": [
+      {
+        "id": 87,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 34
+        }
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "evolvesTo": [
+      {
+        "id": 89,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 38
+        }
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "evolvesTo": [
+      {
+        "id": 91,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "water-stone"
+        }
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "evolvesTo": [
+      {
+        "id": 93,
+        "evolvesTo": [
+          {
+            "id": 94,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "trade"
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 25
+        }
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "evolvesTo": []
+  },
+  {
+    "id": 96,
+    "evolvesTo": [
+      {
+        "id": 97,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 26
+        }
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "evolvesTo": [
+      {
+        "id": 99,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 28
+        }
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "evolvesTo": [
+      {
+        "id": 101,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 30
+        }
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "evolvesTo": [
+      {
+        "id": 103,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "leaf-stone"
+        }
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "evolvesTo": [
+      {
+        "id": 105,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 28
+        }
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "evolvesTo": []
+  },
+  {
+    "id": 107,
+    "evolvesTo": []
+  },
+  {
+    "id": 108,
+    "evolvesTo": []
+  },
+  {
+    "id": 109,
+    "evolvesTo": [
+      {
+        "id": 110,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 35
+        }
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "evolvesTo": [
+      {
+        "id": 112,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 42
+        }
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "evolvesTo": []
+  },
+  {
+    "id": 114,
+    "evolvesTo": []
+  },
+  {
+    "id": 115,
+    "evolvesTo": []
+  },
+  {
+    "id": 116,
+    "evolvesTo": [
+      {
+        "id": 117,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 32
+        }
+      }
+    ]
+  },
+  {
+    "id": 118,
+    "evolvesTo": [
+      {
+        "id": 119,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 33
+        }
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "evolvesTo": [
+      {
+        "id": 121,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "water-stone"
+        }
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "evolvesTo": []
+  },
+  {
+    "id": 123,
+    "evolvesTo": []
+  },
+  {
+    "id": 124,
+    "evolvesTo": []
+  },
+  {
+    "id": 125,
+    "evolvesTo": []
+  },
+  {
+    "id": 126,
+    "evolvesTo": []
+  },
+  {
+    "id": 127,
+    "evolvesTo": []
+  },
+  {
+    "id": 128,
+    "evolvesTo": []
+  },
+  {
+    "id": 129,
+    "evolvesTo": [
+      {
+        "id": 130,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 20
+        }
+      }
+    ]
+  },
+  {
+    "id": 131,
+    "evolvesTo": []
+  },
+  {
+    "id": 132,
+    "evolvesTo": []
+  },
+  {
+    "id": 133,
+    "evolvesTo": [
+      {
+        "id": 134,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "water-stone"
+        }
+      },
+      {
+        "id": 135,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "thunder-stone"
+        }
+      },
+      {
+        "id": 136,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "use-item",
+          "item": "fire-stone"
+        }
+      }
+    ]
+  },
+  {
+    "id": 137,
+    "evolvesTo": []
+  },
+  {
+    "id": 138,
+    "evolvesTo": [
+      {
+        "id": 139,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 40
+        }
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "evolvesTo": [
+      {
+        "id": 141,
+        "evolvesTo": [],
+        "condition": {
+          "trigger": "level-up",
+          "level": 40
+        }
+      }
+    ]
+  },
+  {
+    "id": 142,
+    "evolvesTo": []
+  },
+  {
+    "id": 143,
+    "evolvesTo": []
+  },
+  {
+    "id": 144,
+    "evolvesTo": []
+  },
+  {
+    "id": 145,
+    "evolvesTo": []
+  },
+  {
+    "id": 146,
+    "evolvesTo": []
+  },
+  {
+    "id": 147,
+    "evolvesTo": [
+      {
+        "id": 148,
+        "evolvesTo": [
+          {
+            "id": 149,
+            "evolvesTo": [],
+            "condition": {
+              "trigger": "level-up",
+              "level": 55
+            }
+          }
+        ],
+        "condition": {
+          "trigger": "level-up",
+          "level": 30
+        }
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "evolvesTo": []
+  },
+  {
+    "id": 151,
+    "evolvesTo": []
+  }
+]
