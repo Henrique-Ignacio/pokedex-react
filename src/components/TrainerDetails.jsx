@@ -85,8 +85,9 @@ export default function TrainerDetails({ trainer, pokemonById, covered, onClose,
             <p className="muted">Este treinador não tem Pokémon nos dados.</p>
           ) : (
             <ul className="trainer-team">
-              {team.map((p) => (
-                <li key={p.id}>
+              {/* O índice entra na chave porque um time pode repetir o mesmo Pokémon (ex.: Koga com 3 Venonat) */}
+              {team.map((p, i) => (
+                <li key={`${p.id}-${i}`}>
                   <button
                     type="button"
                     className="trainer-team__member"
