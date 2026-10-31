@@ -1,3 +1,2 @@
 Calculadora de Danos Integrada: Aba de simulação de combate para calcular o impacto de ataques considerando naturezas, IVs/EVs, habilidades e itens equipados.
-Histórico de Descrições (Lore Tracker): Repositório que reúne as descrições da Pokédex de todos os jogos passados, permitindo ler as diferentes curiosidades e histórias de cada criatura ao longo das gerações.
-Responsividade: Deixar o layout responsivo e alterá-lo da melhor maneira para otimização no mobile.
+Histórico de Descrições (Lore Tracker) em português
