@@ -47,17 +47,7 @@
 .pokemon-card__stats dt { color: var(--muted); }
 .pokemon-card__stats dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
 
-.pokemon-card__fav {
-  position: absolute;
-  top: 0.55rem;
-  right: 0.55rem;
-  z-index: 1;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  font-size: 1.1rem;
-  line-height: 1;
-}
-.pokemon-card__fav.is-on { color: #f7b500; border-color: #f7b500; }
+.pokemon-card__fav,
+.pokemon-card__caught { position: absolute; top: 0.55rem; z-index: 1; }
+.pokemon-card__fav { right: 0.55rem; }
+.pokemon-card__caught { left: 0.55rem; }

@@ -16,3 +16,37 @@
 }
 .empty-state h2 { font-size: 1.6rem; }
 .empty-state p { margin: 0 0 0.5rem; color: var(--muted); }
+
+/* Modo "Lista", em tabela (rola na horizontal dentro do próprio quadro em telas pequenas) */
+.pokemon-table-wrap {
+  overflow-x: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.pokemon-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.pokemon-table th,
+.pokemon-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+.pokemon-table tbody tr:last-child td { border-bottom: 0; }
+.pokemon-table tbody tr:hover { background: var(--panel-2); }
+.pokemon-table th { color: var(--muted); font-weight: 600; font-size: 0.82rem; }
+.pokemon-table th button { padding: 0.2rem 0.3rem; background: none; border: 0; border-radius: 6px; color: inherit; font-weight: inherit; }
+.pokemon-table th button:hover { color: var(--text); }
+.pokemon-table th button.is-active { color: var(--brand); }
+.pokemon-table__num { font-variant-numeric: tabular-nums; text-align: right; }
+.pokemon-table th:nth-child(2),
+.pokemon-table th:nth-child(n + 5) { text-align: right; }
+.pokemon-table__icons { display: flex; gap: 0.3rem; }
+.pokemon-table__icons .icon-toggle { width: 1.8rem; height: 1.8rem; font-size: 0.95rem; }
+.pokemon-table__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-weight: 600;
+}
+.pokemon-table__name:hover { color: var(--brand); }
+.pokemon-table__art { width: 36px; height: 36px; }
+.pokemon-table__types { display: flex; gap: 0.3rem; }

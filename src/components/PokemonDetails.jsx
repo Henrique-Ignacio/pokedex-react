@@ -5,6 +5,7 @@ import StatBar from './StatBar'
 import TcgCards from './TcgCards'
 import TypeMatchups from './TypeMatchups'
 import EvolutionChain from './EvolutionChain'
+import FlavorTexts from './FlavorTexts'
 import { STATS, formatId, totalStats, typesOf } from '../utils/pokemon'
 import { colorOf } from '../utils/typeColors'
 import '../css/PokemonDetails.css'
@@ -14,8 +15,13 @@ export default function PokemonDetails({
   pokemonById,
   trainers,
   isFavorite,
+  isCaught,
+  inTeam,
+  teamFull,
   onClose,
   onToggleFavorite,
+  onToggleCaught,
+  onToggleTeam,
   onCompare,
   onSelectPokemon,
 }) {
@@ -67,6 +73,24 @@ export default function PokemonDetails({
               >
                 {isFavorite ? '★ Favorito' : '☆ Favoritar'}
               </button>
+              <button
+                type="button"
+                className={`btn ${isCaught ? 'btn--active' : ''}`}
+                aria-pressed={isCaught}
+                onClick={() => onToggleCaught(pokemon.id)}
+              >
+                {isCaught ? '◓ Capturado' : '◓ Marcar como capturado'}
+              </button>
+              <button
+                type="button"
+                className={`btn ${inTeam ? 'btn--active' : ''}`}
+                aria-pressed={inTeam}
+                disabled={!inTeam && teamFull}
+                title={!inTeam && teamFull ? 'O time já tem 6 Pokémon' : undefined}
+                onClick={() => onToggleTeam(pokemon.id)}
+              >
+                {inTeam ? '✓ No time' : '+ Time'}
+              </button>
               <button type="button" className="btn" onClick={() => onCompare(pokemon.id)}>
                 ⇄ Comparar
               </button>
@@ -86,6 +110,8 @@ export default function PokemonDetails({
         </section>
 
         <TypeMatchups types={types} />
+
+        <FlavorTexts key={pokemon.id} dexId={pokemon.id} />
 
         <section className="modal__trainers">
           <h3>Treinadores</h3>

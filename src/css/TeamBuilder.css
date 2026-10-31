@@ -1,0 +1,159 @@
+.team-builder { display: grid; gap: 1.25rem; }
+
+.team-section {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.2rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.team-section h2 { font-size: 1.6rem; }
+.team-section h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.team-section__header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.team-section__hint { margin: 0; font-size: 0.85rem; }
+.team-section__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.team-name-input {
+  flex: 1;
+  min-width: 0;
+  max-width: 420px;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-2);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  outline: none;
+}
+.team-name-input:focus-visible { border-color: var(--brand); }
+
+.btn--danger:hover { border-color: #e63946; color: #e63946; }
+
+/* Os 6 espaços do time */
+.team-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.6rem; }
+.team-slot { position: relative; }
+.team-slot--empty {
+  width: 100%;
+  min-height: 170px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.2rem;
+  background: none;
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  color: var(--muted);
+  font-weight: 600;
+  transition: border-color 0.15s, color 0.15s;
+}
+.team-slot--empty span { font-size: 2rem; line-height: 1; }
+.team-slot--empty:hover { border-color: var(--brand); color: var(--brand); }
+.team-slot__main {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  padding: 0.7rem 0.5rem;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.team-slot__main:hover { transform: translateY(-2px); border-color: var(--accent); }
+.team-slot__art { width: 80px; height: 80px; }
+.team-slot__types { display: flex; gap: 0.25rem; flex-wrap: wrap; justify-content: center; }
+.team-slot__total { color: var(--muted); font-size: 0.8rem; }
+.team-slot__remove {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.team-slot__remove:hover { border-color: var(--brand); color: var(--brand); }
+
+/* Modal de busca para adicionar */
+.team-picker { width: min(520px, 100%); gap: 0.8rem; }
+.team-picker h3 { font-size: 1.2rem; }
+.team-picker input {
+  width: 100%;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  outline: none;
+}
+.team-picker input:focus-visible { border-color: var(--brand); }
+.team-picker ul { max-height: 50vh; overflow-y: auto; display: grid; gap: 2px; }
+.team-picker li.muted { padding: 0.5rem; }
+.team-picker ul button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  text-align: left;
+}
+.team-picker ul button:hover { background: var(--panel-2); }
+.team-picker__thumb { width: 36px; height: 36px; flex: none; }
+
+/* Resumo */
+.team-summary { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items: start; }
+.team-summary .team-section__hint { grid-column: 1 / -1; }
+.team-types { display: flex; flex-wrap: wrap; gap: 0.5rem 0.6rem; }
+.team-types li { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--muted); }
+.team-types__by { font-size: 0.75rem; }
+
+/* Tabela de defesa (rola na horizontal dentro do quadro em telas pequenas) */
+.team-table-wrap { overflow-x: auto; }
+.team-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.team-table th,
+.team-table td { padding: 0.25rem 0.4rem; border-bottom: 1px solid var(--border); text-align: center; white-space: nowrap; }
+.team-table th:first-child,
+.team-table td:first-child { text-align: left; }
+.team-table th { color: var(--muted); font-weight: 600; font-size: 0.8rem; }
+.team-table__thumb { width: 36px; height: 36px; margin: 0 auto; }
+.team-table__mult { font-weight: 700; font-variant-numeric: tabular-nums; border-radius: 6px; }
+.team-table__count { font-weight: 600; font-variant-numeric: tabular-nums; }
+.team-table tr.is-danger { background: color-mix(in srgb, #e63946 12%, transparent); }
+.team-table tr.is-danger .team-table__count:nth-last-child(2) { color: #e63946; }
+
+.mult--weak { background: color-mix(in srgb, #e63946 22%, transparent); }
+.mult--resist { background: color-mix(in srgb, #2a9d8f 22%, transparent); }
+.mult--weak.mult--x4 { background: color-mix(in srgb, #e63946 45%, transparent); }
+.mult--resist.mult--x4 { background: color-mix(in srgb, #2a9d8f 45%, transparent); }
+.mult--immune { background: var(--text); color: var(--panel); }
+
+.team-section--split { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: start; }
+.team-averages { display: grid; gap: 0.55rem; }
+.team-averages h3 { margin-bottom: 0; }
+
+/* Página "Meus times" */
+.team-list__title { font-size: 1.6rem; }
+.team-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+.team-list__card {
+  width: 100%;
+  display: grid;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: left;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.team-list__card:hover { transform: translateY(-3px); border-color: var(--brand); }
+.team-list__header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+.team-list__header strong { font-family: var(--font-display); font-size: 1.2rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.team-list__members { display: flex; flex-wrap: wrap; gap: 0.2rem; }
+.team-list__thumb { width: 52px; height: 52px; }

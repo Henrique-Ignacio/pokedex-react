@@ -11,6 +11,7 @@ export const SORT_OPTIONS = [
   { value: 'id', label: 'Número (ID)' },
   { value: 'name', label: 'Nome (A–Z)' },
   ...STATS.map((s) => ({ value: s.key, label: `${s.label} (maior primeiro)` })),
+  { value: 'total', label: 'Total (maior primeiro)' },
 ]
 
 export const formatId = (id) => `#${String(id).padStart(3, '0')}`
@@ -37,7 +38,8 @@ export function sortPokemon(list, sortKey) {
   const copy = [...list]
   if (sortKey === 'id') return copy.sort((a, b) => a.id - b.id)
   if (sortKey === 'name') return copy.sort((a, b) => a.name.localeCompare(b.name))
-  return copy.sort((a, b) => b.stats[sortKey] - a.stats[sortKey] || a.id - b.id)
+  const value = (p) => (sortKey === 'total' ? totalStats(p) : p.stats[sortKey])
+  return copy.sort((a, b) => value(b) - value(a) || a.id - b.id)
 }
 
 // Se algum Pokémon vier sem tipos nos dados, mostramos "Typeless" (tipo 0 do próprio JSON).

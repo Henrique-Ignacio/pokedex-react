@@ -2,7 +2,7 @@ import typeChart from '../data/typechart.json'
 
 // typechart.json foi gerado a partir de https://play.pokemonshowdown.com/data/typechart.js:
 // typeChart[defensor][atacante] = multiplicador de dano que o defensor recebe (2, 1, 0.5 ou 0)
-const ATTACK_TYPES = Object.keys(typeChart)
+export const ATTACK_TYPES = Object.keys(typeChart)
 
 // Multiplicador de cada tipo de ataque contra o Pokémon (os dois tipos se multiplicam: ×4, ×¼…).
 // Tipos fora da tabela (ex.: "Typeless") não alteram o dano.

@@ -13,7 +13,15 @@ const MoonIcon = () => (
   </svg>
 )
 
-export default function Header({ view, onChangeView, theme, onToggleTheme, total, shown }) {
+const VIEWS = [
+  { value: 'pokedex', label: 'Pokémon' },
+  { value: 'trainers', label: 'Treinadores' },
+  { value: 'teams', label: 'Times' },
+]
+
+export default function Header({ view, onChangeView, theme, onToggleTheme, total, caughtCount }) {
+  const caughtPercent = Math.round((caughtCount / total) * 100)
+
   return (
     <header className="app-header">
       <div className="app-header__brand">
@@ -26,26 +34,36 @@ export default function Header({ view, onChangeView, theme, onToggleTheme, total
         />
         <div>
           <h1>Pokédex</h1>
+          <div className="app-header__progress" title={`${caughtPercent}% da Pokédex capturada`}>
+            <span>
+              Capturados <strong>{caughtCount}</strong>/{total}
+            </span>
+            <div
+              className="app-header__progress-track"
+              role="progressbar"
+              aria-label="Pokémon capturados"
+              aria-valuenow={caughtCount}
+              aria-valuemin={0}
+              aria-valuemax={total}
+            >
+              <div style={{ width: `${caughtPercent}%` }} />
+            </div>
+          </div>
         </div>
       </div>
 
       <nav className="app-header__nav" aria-label="Seções">
-        <button
-          type="button"
-          className={view === 'pokedex' ? 'is-active' : ''}
-          aria-current={view === 'pokedex' ? 'page' : undefined}
-          onClick={() => onChangeView('pokedex')}
-        >
-          Pokémon
-        </button>
-        <button
-          type="button"
-          className={view === 'trainers' ? 'is-active' : ''}
-          aria-current={view === 'trainers' ? 'page' : undefined}
-          onClick={() => onChangeView('trainers')}
-        >
-          Treinadores
-        </button>
+        {VIEWS.map((v) => (
+          <button
+            type="button"
+            key={v.value}
+            className={view === v.value ? 'is-active' : ''}
+            aria-current={view === v.value ? 'page' : undefined}
+            onClick={() => onChangeView(v.value)}
+          >
+            {v.label}
+          </button>
+        ))}
       </nav>
 
       <button

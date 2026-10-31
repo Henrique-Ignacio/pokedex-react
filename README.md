@@ -9,11 +9,16 @@ Pokédex interativa feita com **React + Vite** para explorar os 151 Pokémon de 
 
 - Lista com os 151 Pokémon (ID, nome, tipos e os 6 atributos em cada card)
 - Pesquisa por **nome** ou **ID** (atualiza enquanto você digita)
-- Filtro por **um ou mais tipos** ao mesmo tempo (mostra os Pokémon que têm qualquer um dos tipos selecionados)
+- Filtro por **um ou mais tipos** ao mesmo tempo, mostrando os Pokémon que têm **qualquer um** ou **todos** os tipos marcados
+- Filtro por **faixa de atributos** (sliders de mínimo e máximo para HP, Attack, Defense, etc.)
+- Dois modos de visualização: **grade** e **lista** (na lista, clicar no cabeçalho ordena pela coluna)
+- **Pokédex Tracker**: marque os Pokémon que já capturou (pokébola no card ou nos detalhes), filtre por capturados/faltando e acompanhe o progresso no topo (salvo no navegador)
+- **Times**: crie e salve vários times com nome (até 6 Pokémon cada) na aba "Times", que lista todos os times criados. Cada time mostra a defesa contra cada tipo, os pontos fracos, a cobertura ofensiva (golpes STAB) e a média de atributos. Dá para adicionar Pokémon pelo "+" de cada espaço vazio, pelo botão "+ Time" nos detalhes ou copiar o time de um treinador
 - Detalhes do Pokémon em **modal** com:
   - **cadeia de evolução** com a condição de cada etapa (nível, pedra ou troca); clique em um estágio para abrir os detalhes dele
   - barras de atributos e total
   - **fraquezas, resistências e imunidades** (×4, ×2, ×½, ×¼, ×0), calculadas a partir dos tipos
+  - **descrições da Pokédex de todos os jogos** (Red/Blue até Scarlet/Violet, em inglês), uma por vez ou todas de uma vez
   - treinadores que o possuem
   - **cartas do Pokémon TCG** (via TCGdex), ordenadas da mais rara para a mais comum
 - **Comparação** entre dois Pokémon (botão "Comparar" nos detalhes): atributos lado a lado com o vencedor de cada um e fraquezas/resistências dos dois
@@ -54,6 +59,8 @@ Cada treinador tem uma lista `teams` com uma ou mais versões do time. O primeir
 A tabela de efetividade de tipos fica em `src/data/typechart.json`. Ela foi gerada uma única vez a partir de `https://play.pokemonshowdown.com/data/typechart.js` (Pokémon Showdown) e guarda, para cada tipo defensor, o multiplicador de dano recebido de cada tipo de ataque. Como fica salva no projeto, as fraquezas funcionam sem internet.
 
 As cadeias de evolução ficam em `src/data/evolutions.json`, geradas uma única vez a partir da **PokéAPI** (`pokemon-species` e `evolution-chain`). Só entram os 151 de Kanto (por exemplo, o Pikachu aparece sem o Pichu, e o Eevee só com Vaporeon, Jolteon e Flareon), e a condição de cada evolução é a dos jogos Red/Blue.
+
+As descrições da Pokédex ficam em `src/data/flavor-texts.json`, geradas uma única vez a partir da **PokéAPI** (`pokemon-species`, textos em inglês). Textos iguais em jogos diferentes aparecem agrupados (ex.: "Red / Blue"). Como o arquivo é grande, ele só é carregado quando os detalhes de um Pokémon são abertos pela primeira vez.
 
 ## Fontes externas
 

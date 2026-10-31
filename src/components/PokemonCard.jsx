@@ -1,24 +1,28 @@
 import PokemonImage from './PokemonImage'
 import TypeBadge from './TypeBadge'
+import { CaughtButton, FavoriteButton } from './CollectionButtons'
 import { STATS, formatId, typesOf } from '../utils/pokemon'
 import { colorOf } from '../utils/typeColors'
 import '../css/PokemonCard.css'
 
-export default function PokemonCard({ pokemon, isFavorite, onSelect, onToggleFavorite }) {
+export default function PokemonCard({ pokemon, isFavorite, isCaught, onSelect, onToggleFavorite, onToggleCaught }) {
   const types = typesOf(pokemon)
   const accent = colorOf(types[0].name)
 
   return (
     <article className="pokemon-card" style={{ '--accent': accent }}>
-      <button
-        type="button"
-        className={`pokemon-card__fav ${isFavorite ? 'is-on' : ''}`}
-        aria-pressed={isFavorite}
-        aria-label={isFavorite ? `Remover ${pokemon.name} dos favoritos` : `Favoritar ${pokemon.name}`}
-        onClick={() => onToggleFavorite(pokemon.id)}
-      >
-        {isFavorite ? '★' : '☆'}
-      </button>
+      <CaughtButton
+        pokemon={pokemon}
+        isCaught={isCaught}
+        onToggle={onToggleCaught}
+        className="pokemon-card__caught"
+      />
+      <FavoriteButton
+        pokemon={pokemon}
+        isFavorite={isFavorite}
+        onToggle={onToggleFavorite}
+        className="pokemon-card__fav"
+      />
 
       <button
         type="button"

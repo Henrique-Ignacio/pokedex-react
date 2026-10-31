@@ -1,0 +1,28 @@
+.flavor { display: grid; gap: 0.6rem; }
+.flavor h3 { font-size: 1.1rem; }
+.flavor__header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.flavor__toggle { padding: 0.3rem 0.9rem; font-size: 0.85rem; }
+
+.flavor__entry {
+  padding: 0.7rem 0.9rem;
+  background: var(--panel-2);
+  border-radius: 10px;
+}
+.flavor__entry p { margin: 0.25rem 0 0; }
+.flavor__games { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+.flavor__games .muted { font-weight: 500; }
+
+.flavor__single { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.5rem; }
+.flavor__nav {
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.flavor__nav:hover { border-color: var(--brand); }
+
+.flavor__list { display: grid; gap: 0.5rem; max-height: 360px; overflow-y: auto; }

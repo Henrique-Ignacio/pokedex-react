@@ -1,7 +1,19 @@
 import PokemonCard from './PokemonCard'
+import PokemonTable from './PokemonTable'
 import '../css/PokemonList.css'
 
-export default function PokemonList({ pokemon, favorites, onSelect, onToggleFavorite, onClear }) {
+export default function PokemonList({
+  pokemon,
+  viewMode,
+  favorites,
+  caught,
+  sortKey,
+  onSortChange,
+  onSelect,
+  onToggleFavorite,
+  onToggleCaught,
+  onClear,
+}) {
   if (pokemon.length === 0) {
     return (
       <div className="empty-state" role="status">
@@ -14,6 +26,21 @@ export default function PokemonList({ pokemon, favorites, onSelect, onToggleFavo
     )
   }
 
+  if (viewMode === 'table') {
+    return (
+      <PokemonTable
+        pokemon={pokemon}
+        favorites={favorites}
+        caught={caught}
+        sortKey={sortKey}
+        onSortChange={onSortChange}
+        onSelect={onSelect}
+        onToggleFavorite={onToggleFavorite}
+        onToggleCaught={onToggleCaught}
+      />
+    )
+  }
+
   return (
     <section className="pokemon-list" aria-label="Lista de Pokémon">
       {pokemon.map((p) => (
@@ -21,8 +48,10 @@ export default function PokemonList({ pokemon, favorites, onSelect, onToggleFavo
           key={p.id}
           pokemon={p}
           isFavorite={favorites.includes(p.id)}
+          isCaught={caught.includes(p.id)}
           onSelect={onSelect}
           onToggleFavorite={onToggleFavorite}
+          onToggleCaught={onToggleCaught}
         />
       ))}
     </section>

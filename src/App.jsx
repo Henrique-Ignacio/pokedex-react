@@ -8,8 +8,11 @@ import PokemonDetails from './components/PokemonDetails'
 import TrainerList from './components/TrainerList'
 import TrainerDetails from './components/TrainerDetails'
 import CompareModal from './components/CompareModal'
+import TeamBuilder from './components/TeamBuilder'
+import TeamList from './components/TeamList'
 import { useLocalStorage } from './hooks/useLocalStorage'
-import { matchesQuery, sortPokemon } from './utils/pokemon'
+import { STATS, matchesQuery, sortPokemon } from './utils/pokemon'
+import { TEAM_SIZE } from './utils/teamAnalysis'
 import { trainerHasPokemon } from './utils/trainers'
 import './css/App.css'
 
@@ -20,16 +23,44 @@ const usedTypeIds = new Set(allPokemon.flatMap((p) => p.types.map((t) => t.id)))
 const filterTypes = types.filter((t) => usedTypeIds.has(t.id))
 const pokemonById = new Map(allPokemon.map((p) => [p.id, p]))
 
+// Menor e maior valor de cada atributo nos dados: são os limites dos sliders
+const statLimits = Object.fromEntries(
+  STATS.map((s) => {
+    const values = allPokemon.map((p) => p.stats[s.key])
+    return [s.key, [Math.min(...values), Math.max(...values)]]
+  }),
+)
+
+const inRange = (pokemon, ranges) =>
+  STATS.every((s) => pokemon.stats[s.key] >= ranges[s.key][0] && pokemon.stats[s.key] <= ranges[s.key][1])
+
+// Tira só a primeira ocorrência (o time pode ter o mesmo Pokémon repetido)
+const withoutFirst = (list, id) => list.filter((_, i) => i !== list.indexOf(id))
+
+// `id: null` = time novo, ainda não salvo
+const newDraft = (pokemonIds = [], name = '') => ({ id: null, name, pokemonIds })
+const toPokemon = (ids) => ids.map((id) => pokemonById.get(id)).filter(Boolean)
+
 export default function App() {
   const [view, setView] = useState('pokedex')
   const [query, setQuery] = useState('')
   const [selectedTypes, setSelectedTypes] = useState([])
+  const [typeMode, setTypeMode] = useState('any')
+  const [statRanges, setStatRanges] = useState(statLimits)
+  const [caughtFilter, setCaughtFilter] = useState('all')
   const [sortKey, setSortKey] = useState('id')
   const [favoritesOnly, setFavoritesOnly] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
   const [selectedTrainerId, setSelectedTrainerId] = useState(null)
   const [compareId, setCompareId] = useState(null)
   const [favorites, setFavorites] = useLocalStorage('pokedex:favorites', [])
+  const [caught, setCaught] = useLocalStorage('pokedex:caught', [])
+  // Times salvos ({ id, name, pokemonIds }) e o rascunho do montador (time sendo criado/editado).
+  // O rascunho fica salvo também, para não perder a edição ao recarregar a página.
+  const [teams, setTeams] = useLocalStorage('pokedex:teams', [])
+  const [draft, setDraft] = useLocalStorage('pokedex:teamDraft', null)
+  const [openTeamId, setOpenTeamId] = useState(null)
+  const [viewMode, setViewMode] = useLocalStorage('pokedex:viewMode', 'grid')
   const [theme, setTheme] = useLocalStorage('pokedex:theme', 'light')
 
   useEffect(() => {
@@ -38,17 +69,73 @@ export default function App() {
 
   // Estado derivado: lista filtrada + ordenada
   const visiblePokemon = useMemo(() => {
+    const hasType = (p, id) => p.types.some((t) => t.id === id)
     const filtered = allPokemon.filter(
       (p) =>
         matchesQuery(p, query) &&
-        (selectedTypes.length === 0 || p.types.some((t) => selectedTypes.includes(t.id))) &&
-        (!favoritesOnly || favorites.includes(p.id)),
+        (selectedTypes.length === 0 ||
+          (typeMode === 'all'
+            ? selectedTypes.every((id) => hasType(p, id))
+            : selectedTypes.some((id) => hasType(p, id)))) &&
+        inRange(p, statRanges) &&
+        (!favoritesOnly || favorites.includes(p.id)) &&
+        (caughtFilter === 'all' || caught.includes(p.id) === (caughtFilter === 'caught')),
     )
     return sortPokemon(filtered, sortKey)
-  }, [query, selectedTypes, sortKey, favoritesOnly, favorites])
+  }, [query, selectedTypes, typeMode, statRanges, sortKey, favoritesOnly, favorites, caughtFilter, caught])
 
   const toggleFavorite = (id) =>
     setFavorites((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]))
+
+  const toggleCaught = (id) =>
+    setCaught((prev) => (prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]))
+
+  // Muda os Pokémon do rascunho (se ainda não houver um, começa um time novo)
+  const updateDraftMembers = (update) =>
+    setDraft((prev) => {
+      const current = prev ?? newDraft()
+      return { ...current, pokemonIds: update(current.pokemonIds) }
+    })
+  const addToTeam = (id) => updateDraftMembers((ids) => (ids.length < TEAM_SIZE ? [...ids, id] : ids))
+  const toggleTeamMember = (id) =>
+    updateDraftMembers((ids) =>
+      ids.includes(id) ? withoutFirst(ids, id) : ids.length < TEAM_SIZE ? [...ids, id] : ids,
+    )
+  const draftIds = draft?.pokemonIds ?? []
+  const openTeam = teams.find((t) => t.id === openTeamId) ?? null
+
+  const createTeam = () => {
+    setOpenTeamId(null)
+    setDraft(newDraft())
+  }
+
+  const saveDraft = () => {
+    const id = draft.id ?? Date.now()
+    const saved = { id, name: draft.name.trim() || 'Time sem nome', pokemonIds: draft.pokemonIds }
+    setTeams((prev) => (draft.id === null ? [...prev, saved] : prev.map((t) => (t.id === id ? saved : t))))
+    setDraft(null)
+    setOpenTeamId(id)
+  }
+
+  const deleteTeam = () => {
+    if (!window.confirm(`Excluir o time "${openTeam.name}"?`)) return
+    setTeams((prev) => prev.filter((t) => t.id !== openTeam.id))
+    setOpenTeamId(null)
+  }
+
+  // Vindo dos detalhes do treinador: abre o montador com uma cópia do time dele
+  const analyzeTrainerTeam = (ids, name) => {
+    setDraft(newDraft(ids.slice(0, TEAM_SIZE), name))
+    setOpenTeamId(null)
+    setSelectedTrainerId(null)
+    setView('teams')
+  }
+
+  const changeView = (next) => {
+    setView(next)
+    // Clicar em "Times" volta para a lista (o rascunho em edição continua aberto)
+    if (next === 'teams') setOpenTeamId(null)
+  }
 
   const toggleType = (id) =>
     setSelectedTypes((prev) => (prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]))
@@ -56,7 +143,9 @@ export default function App() {
   const clearFilters = () => {
     setQuery('')
     setSelectedTypes([])
+    setStatRanges(statLimits)
     setFavoritesOnly(false)
+    setCaughtFilter('all')
   }
 
   const pickRandom = () => {
@@ -82,11 +171,11 @@ export default function App() {
     <div className="app">
       <Header
         view={view}
-        onChangeView={setView}
+        onChangeView={changeView}
         theme={theme}
         onToggleTheme={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
         total={allPokemon.length}
-        shown={visiblePokemon.length}
+        caughtCount={caught.length}
       />
 
       <main>
@@ -98,23 +187,63 @@ export default function App() {
               selectedTypes={selectedTypes}
               onToggleType={toggleType}
               onClearTypes={() => setSelectedTypes([])}
+              typeMode={typeMode}
+              onTypeModeChange={setTypeMode}
               sortKey={sortKey}
               onSortChange={setSortKey}
               favoritesOnly={favoritesOnly}
               onToggleFavoritesOnly={() => setFavoritesOnly((v) => !v)}
               favoritesCount={favorites.length}
+              caughtFilter={caughtFilter}
+              onCaughtFilterChange={setCaughtFilter}
+              statLimits={statLimits}
+              statRanges={statRanges}
+              onStatRangeChange={(key, range) => setStatRanges((prev) => ({ ...prev, [key]: range }))}
+              onResetStatRanges={() => setStatRanges(statLimits)}
+              viewMode={viewMode}
+              onViewModeChange={setViewMode}
               onRandom={pickRandom}
             />
             <PokemonList
               pokemon={visiblePokemon}
+              viewMode={viewMode}
               favorites={favorites}
+              caught={caught}
+              sortKey={sortKey}
+              onSortChange={setSortKey}
               onSelect={setSelectedId}
               onToggleFavorite={toggleFavorite}
+              onToggleCaught={toggleCaught}
               onClear={clearFilters}
             />
           </>
-        ) : (
+        ) : view === 'trainers' ? (
           <TrainerList trainers={trainers} onSelectTrainer={setSelectedTrainerId} />
+        ) : draft ? (
+          <TeamBuilder
+            editable
+            name={draft.name}
+            team={toPokemon(draft.pokemonIds)}
+            pokemonList={allPokemon}
+            onNameChange={(name) => setDraft((prev) => ({ ...prev, name }))}
+            onAdd={addToTeam}
+            onRemove={(index) => updateDraftMembers((ids) => ids.filter((_, i) => i !== index))}
+            onSave={saveDraft}
+            onCancel={() => setDraft(null)}
+            onSelectPokemon={setSelectedId}
+          />
+        ) : openTeam ? (
+          <TeamBuilder
+            key={openTeam.id}
+            name={openTeam.name}
+            team={toPokemon(openTeam.pokemonIds)}
+            onEdit={() => setDraft({ ...openTeam })}
+            onDelete={deleteTeam}
+            onBack={() => setOpenTeamId(null)}
+            onSelectPokemon={setSelectedId}
+          />
+        ) : (
+          <TeamList teams={teams} pokemonById={pokemonById} onOpen={setOpenTeamId} onCreate={createTeam} />
         )}
       </main>
 
@@ -126,6 +255,7 @@ export default function App() {
           covered={selectedPokemon !== null || compareBase !== null}
           onClose={() => setSelectedTrainerId(null)}
           onSelectPokemon={setSelectedId}
+          onAnalyzeTeam={analyzeTrainerTeam}
         />
       )}
 
@@ -135,8 +265,13 @@ export default function App() {
           pokemonById={pokemonById}
           trainers={trainersOfSelected}
           isFavorite={favorites.includes(selectedPokemon.id)}
+          isCaught={caught.includes(selectedPokemon.id)}
+          inTeam={draftIds.includes(selectedPokemon.id)}
+          teamFull={draftIds.length >= TEAM_SIZE}
           onClose={() => setSelectedId(null)}
           onToggleFavorite={toggleFavorite}
+          onToggleCaught={toggleCaught}
+          onToggleTeam={toggleTeamMember}
           onCompare={openCompare}
           onSelectPokemon={setSelectedId}
         />

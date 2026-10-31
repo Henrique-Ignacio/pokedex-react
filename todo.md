@@ -1,5 +1,3 @@
-Busca e Filtragem Avançada: Filtros combinados, busca dinâmica por atributos (stats) com sliders e múltiplos modos de visualização alternativos (grade, lista ou tabela).
-Montador de Equipes (Team Builder): Simulador onde o usuário escolhe 6 Pokémon e o sistema calcula automaticamente a cobertura de dano, fraquezas elementais e resistências do time completo.
 Calculadora de Danos Integrada: Aba de simulação de combate para calcular o impacto de ataques considerando naturezas, IVs/EVs, habilidades e itens equipados.
-Pokédex Tracker Pessoal: Sistema de marcação individual onde o usuário registra quais criaturas já capturou em seus jogos para acompanhar o progresso de sua coleção em tempo real.
 Histórico de Descrições (Lore Tracker): Repositório que reúne as descrições da Pokédex de todos os jogos passados, permitindo ler as diferentes curiosidades e histórias de cada criatura ao longo das gerações.
+Responsividade: Deixar o layout responsivo e alterá-lo da melhor maneira para otimização no mobile.

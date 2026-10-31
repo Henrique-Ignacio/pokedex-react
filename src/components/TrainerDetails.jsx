@@ -12,7 +12,7 @@ import '../css/Filters.css'
 import '../css/TrainerDetails.css'
 
 // `covered` = há outro modal (detalhes de um Pokémon) aberto por cima; aí o Esc é dele
-export default function TrainerDetails({ trainer, pokemonById, covered, onClose, onSelectPokemon }) {
+export default function TrainerDetails({ trainer, pokemonById, covered, onClose, onSelectPokemon, onAnalyzeTeam }) {
   // Índice do time escolhido na caixa de seleção (o primeiro é o padrão)
   const [teamIndex, setTeamIndex] = useState(0)
   const team = teamPokemon(trainer.teams[teamIndex], pokemonById)
@@ -60,6 +60,20 @@ export default function TrainerDetails({ trainer, pokemonById, covered, onClose,
               <p className="trainer-details__ace">
                 Mais forte: <strong>{strongest.name}</strong> ({totalStats(strongest)})
               </p>
+            )}
+            {team.length > 0 && (
+              <button
+                type="button"
+                className="btn trainer-details__analyze"
+                onClick={() =>
+                  onAnalyzeTeam(
+                    team.map((p) => p.id),
+                    trainer.teams.length > 1 ? `${trainer.name} (${trainer.teams[teamIndex].label})` : trainer.name,
+                  )
+                }
+              >
+                Copiar para Meus times
+              </button>
             )}
           </div>
         </header>
